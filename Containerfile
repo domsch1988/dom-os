@@ -28,12 +28,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build.sh
 
-# Layer custom RPMs directly into the base image
-RUN rpm-ostree install \
-    neovim \
-    git \
-    && rpm-ostree cleanup -a
-
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
